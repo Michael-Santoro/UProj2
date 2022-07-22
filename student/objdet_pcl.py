@@ -70,15 +70,22 @@ def show_range_image(frame, lidar_name):
     print("student task ID_S1_EX1")
 
     # step 1 : extract lidar data and range image for the roof-mounted lidar
-    
+    lidar = [obj for obj in frame.lasers if obj.name == lidar_name][0]
+
     # step 2 : extract the range and the intensity channel from the range image
-    
+    ri_range = ri[:,:,0]
+    ri_intensity = ri[:,:,3]
+
     # step 3 : set values <0 to zero
-    
+    ri[ri<0]=0.0
+
     # step 4 : map the range channel onto an 8-bit scale and make sure that the full range of values is appropriately considered
-    
+    ri_range = ri_range * 255 / (np.amax(ri_range) - np.amin(ri_range))
+
+
     # step 5 : map the intensity channel onto an 8-bit scale and normalize with the difference between the 1- and 99-percentile to mitigate the influence of outliers
-    
+    img_range = ri_intensity.astype(np.uint8)
+
     # step 6 : stack the range and intensity image vertically using np.vstack and convert the result to an unsigned 8-bit integer
     
     img_range_intensity = [] # remove after implementing all steps
