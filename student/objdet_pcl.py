@@ -16,6 +16,7 @@ import cv2
 import numpy as np
 import torch
 import open3d as o3d
+import zlib
 
 # add project directory to python path to enable relative imports
 import os
@@ -54,10 +55,9 @@ def show_pcl(pcl):
 
     # step 5 : visualize point cloud and keep window open until right-arrow is pressed (key-code 262)
     right_arrow_key_code = 262
-    vis.register_key_callback(right_arrow_key_code, exit_callback)
-    vis.update_renderer()
-    vis.poll_events()    
-    vis.run()  
+    vis.register_key_callback(right_arrow_key_code, lambda callback: print(callback))
+    vis.run()
+    vis.destroy_window()
     #######
     ####### ID_S1_EX2 END #######     
        
@@ -71,24 +71,35 @@ def show_range_image(frame, lidar_name):
 
     # step 1 : extract lidar data and range image for the roof-mounted lidar
     lidar = [obj for obj in frame.lasers if obj.name == lidar_name][0]
+    ri = []
+    if len(lidar.ri_return1.range_image_compressed) > 0: # use first response
+        ri = dataset_pb2.MatrixFloat()
+        ri.ParseFromString(zlib.decompress(lidar.ri_return1.range_image_compressed))
+        ri = np.array(ri.data).reshape(ri.shape.dims)
 
     # step 2 : extract the range and the intensity channel from the range image
     ri_range = ri[:,:,0]
-    ri_intensity = ri[:,:,3]
+    ri_intensity = ri[:,:,1]
 
     # step 3 : set values <0 to zero
-    ri[ri<0]=0.0
+    ri_range[ri_range<0]=0.0
+    ri_intensity[ri_intensity<0]=0.0
 
     # step 4 : map the range channel onto an 8-bit scale and make sure that the full range of values is appropriately considered
     ri_range = ri_range * 255 / (np.amax(ri_range) - np.amin(ri_range))
+    ri_intensity = ri_intensity * 255 / (np.amax(ri_intensity) - np.amin(ri_intensity)) 
 
 
     # step 5 : map the intensity channel onto an 8-bit scale and normalize with the difference between the 1- and 99-percentile to mitigate the influence of outliers
-    img_range = ri_intensity.astype(np.uint8)
+    img_range = ri_range.astype(np.uint8)
+    img_intensity = ri_intensity.astype(np.uint8)
+
+    img_range = (img_range - np.percentile(img_range, 1))/(np.percentile(img_range, 99)-np.percentile(img_range, 1))
+    img_intensity = (img_intensity - np.percentile(img_intensity, 1))/(np.percentile(img_intensity, 99)-np.percentile(img_intensity, 1))
 
     # step 6 : stack the range and intensity image vertically using np.vstack and convert the result to an unsigned 8-bit integer
-    
-    img_range_intensity = [] # remove after implementing all steps
+    img_range_intensity = np.vstack((img_range,img_intensity))
+    img_range_intensity.astype(np.uint8)
     #######
     ####### ID_S1_EX1 END #######     
     
