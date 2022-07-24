@@ -96,6 +96,7 @@ exec_detection = ['bev_from_pcl', 'detect_objects']
 exec_tracking = []
 exec_visualization = ['show_objects_in_bev_labels_in_camera']
 configs_det = det.load_configs(model_name="fpn_resnet")
+```
 
 ## Extract 3D bounding boxes from model response (ID_S3_EX2)
 ```python
@@ -107,3 +108,15 @@ exec_tracking = []
 exec_visualization = ['show_objects_in_bev_labels_in_camera']
 configs_det = det.load_configs(model_name="fpn_resnet")
 ```
+## Compute intersection-over-union between labels and detections (ID_S4_EX1)
+```python
+data_filename = 'training_segment-1005081002024129653_5313_150_5333_150_with_camera_labels.tfrecord
+show_only_frames = [50, 51]
+exec_data = ['pcl_from_rangeimage']
+exec_detection = ['bev_from_pcl', 'detect_objects', 'validate_object_labels', 'measure_detection_performance']
+exec_tracking = []
+exec_visualization = ['show_detection_performance']
+configs_det = det.load_configs(model_name="darknet")
+```
+
+## Compute false-negatives and false-positives (ID_S4_EX2)
