@@ -58,10 +58,52 @@ Try to identify vehicle features that appear stable in most of the inspected exa
 10) Another example of the back of some cars.
 <img width="260" alt="image" src="https://user-images.githubusercontent.com/74157573/180664307-ec149287-ac49-45e7-80c5-ce3fee035498.png">
 
+## Convert sensor coordinates to BEV-map coordinates (ID_S2_EX1)
+The following image is obtained by modifying the following in the loop_over_dataset.py file:
+```python
+data_filename = '1005081002024129653_5313_150_5333_150_with_camera_labels.tfrecord'
+show_only_frames = [0, 1]
+exec_data = ['pcl_from_rangeimage']
+exec_detection = ['bev_from_pcl']
+exec_tracking = []
+exec_visualization = []
+```
+<img width="355" alt="image" src="https://user-images.githubusercontent.com/74157573/180664498-650be03e-0256-4d14-a298-5311650c4d08.png">
 
+## Compute intensity layer of the BEV map (ID_S2_EX2)
+The following image is obtained by modifying the following in the loop_over_dataset.py file:
+```python
+data_filename = '1005081002024129653_5313_150_5333_150_with_camera_labels.tfrecord'
+show_only_frames = [0, 1]
+exec_data = ['pcl_from_rangeimage']
+exec_detection = ['bev_from_pcl']
+exec_tracking = []
+exec_visualization = []
+```
 
+<img width="302" alt="image" src="https://user-images.githubusercontent.com/74157573/180664739-a6b29934-cd4b-40c9-9a23-2c7c990b17e6.png">
 
+## Compute height layer of the BEV map (ID_S2_EX3)
+The output of the implementation of this step was no different from the previous 2.
 
+## Add a second model from a GitHub repo (ID_S3_EX1)
+There were no visual artificats produced with this exc but the settings were as follows.
+```python
+data_filename = '1005081002024129653_5313_150_5333_150_with_camera_labels.tfrecord'
+show_only_frames = [50, 51]
+exec_data = ['pcl_from_rangeimage', 'load_image']
+exec_detection = ['bev_from_pcl', 'detect_objects']
+exec_tracking = []
+exec_visualization = ['show_objects_in_bev_labels_in_camera']
+configs_det = det.load_configs(model_name="fpn_resnet")
 
-
-
+## Extract 3D bounding boxes from model response (ID_S3_EX2)
+```python
+data_filename = 'training_segment-1005081002024129653_5313_150_5333_150_with_camera_labels.tfrecord
+show_only_frames = [50, 51]
+exec_data = ['pcl_from_rangeimage', 'load_image']
+exec_detection = ['bev_from_pcl', 'detect_objects']
+exec_tracking = []
+exec_visualization = ['show_objects_in_bev_labels_in_camera']
+configs_det = det.load_configs(model_name="fpn_resnet")
+```
