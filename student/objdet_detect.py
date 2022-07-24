@@ -65,8 +65,8 @@ def load_configs_model(model_name='darknet', configs=None):
         configs.model_path = os.path.join(parent_path, 'tools', 'objdet_models', 'resnet')
         configs.pretrained_filename = os.path.join(configs.model_path, 'pretrained', 'fpn_resnet_18_epoch_300.pth')
         configs.arch = 'fpn_resnet'
-        onfigs.batch_size = 4
-        #configs.cfgfile = os.path.join(configs.model_path, 'config', 'complex_yolov4.cfg')
+        configs.num_layers = 18
+        configs.batch_size = 4
         configs.conf_thresh = 0.5
 
         configs.k = 50
@@ -162,7 +162,7 @@ def create_model(configs):
         ####### ID_S3_EX1-4 START #######     
         #######
         print("student task ID_S3_EX1-4")
-        model = fpn_resnet.get_pose_net(num_layers=num_layers, heads=configs.heads, head_conv=configs.head_conv,
+        model = fpn_resnet.get_pose_net(num_layers=configs.num_layers, heads=configs.heads, head_conv=configs.head_conv,
                                         imagenet_pretrained=configs.imagenet_pretrained)
         #######
         ####### ID_S3_EX1-4 END #######     

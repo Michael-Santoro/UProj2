@@ -168,7 +168,7 @@ def bev_from_pcl(lidar_pcl, configs):
     img_intensity = img_intensity.astype(np.uint8)
     while (1):
         cv2.imshow('img_intensity', img_intensity)
-        if cv2.waitKey(10) & 0xFF == 27:
+        if cv2.waitKey(0) & 0xFF == 27:
             break
     cv2.destroyAllWindows()
 
@@ -193,7 +193,7 @@ def bev_from_pcl(lidar_pcl, configs):
     height_map = height_map.astype(np.uint8)
     while (1):
         cv2.imshow('height_map', height_map)
-        if cv2.waitKey(10) & 0xFF == 27:
+        if cv2.waitKey() & 0xFF == 27:
             break
     cv2.destroyAllWindows()
     #######
