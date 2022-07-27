@@ -54,10 +54,15 @@ def show_pcl(pcl):
     vis.add_geometry(pcd)
 
     # step 5 : visualize point cloud and keep window open until right-arrow is pressed (key-code 262)
+    def exit_key(vis):
+        vis.destroy_window()
+
+    vis.register_key_callback(262,exit_key)
+    
     right_arrow_key_code = 262
-    vis.register_key_callback(right_arrow_key_code, lambda callback: print(callback))
+    vis.register_key_callback(right_arrow_key_code, exit_key)
     vis.run()
-    vis.destroy_window()
+
     #######
     ####### ID_S1_EX2 END #######     
        
@@ -166,6 +171,8 @@ def bev_from_pcl(lidar_pcl, configs):
     ## step 5 : temporarily visualize the intensity map using OpenCV to make sure that vehicles separate well from the background
     img_intensity = intensity_map * 256
     img_intensity = img_intensity.astype(np.uint8)
+
+
     while (1):
         cv2.imshow('img_intensity', img_intensity)
         if cv2.waitKey(0) & 0xFF == 27:
