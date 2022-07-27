@@ -13,7 +13,7 @@ exec_detection = []
 exec_tracking = []
 exec_visualization = ['show_range_image']
 ```
-![range_image_screenshot_24 07 2022](https://user-images.githubusercontent.com/74157573/180663252-96853d9f-7e9b-4cfb-8afe-e82d85ab5016.png)
+<img width="1278" alt="image" src="https://user-images.githubusercontent.com/74157573/181143869-a49fd1df-a5fc-48ea-9937-9e1a0d59a251.png">
 
 ## Visualize point-cloud (ID_S1_EX2) ##
 The following image is obtained by modifying the following in the loop_over_dataset.py file:
