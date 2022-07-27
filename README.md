@@ -28,14 +28,14 @@ exec_visualization = ['show_pcl']
 ### Find 10 examples of vehicles with varying degrees of visibility in the point-cloud
 Try to identify vehicle features that appear stable in most of the inspected examples and describe them
 
-1) The following is an example of a pick-up truck and a trailer next to the car with the Lidar sensor on top.
-<img width="426" alt="image" src="https://user-images.githubusercontent.com/74157573/180663681-40a3651f-91b2-4d84-8ee2-fe309280355e.png">
+1) The following is an example of a pick-up truck, trailer, and a person. There even appears to be a lightbar on top of the truck with box type bed.
+<img width="497" alt="image" src="https://user-images.githubusercontent.com/74157573/181386372-6c973e71-1442-4ed9-8976-9d40526e7dfc.png">
 
-2) The following are a couple of cars adjacent to the lidar sensor.
-<img width="437" alt="image" src="https://user-images.githubusercontent.com/74157573/180663799-5de19d50-ba9c-45f6-a3f1-3162f413428b.png">
+2) The following is an example of a front of a car traveling in the opposite direction.
+<img width="320" alt="image" src="https://user-images.githubusercontent.com/74157573/181387390-b82b219b-6eba-498f-9a63-9546b9f98b19.png">
 
-3) Here are a couple more veichles a little further away.
-<img width="578" alt="image" src="https://user-images.githubusercontent.com/74157573/180663851-8e4e6488-d0cd-4948-883a-b18d677ad25c.png">
+3) Here are a couple more veichles a little further away all of which are facing toward the car with the lidar detector. We can see this from the windshield feature.
+<img width="347" alt="image" src="https://user-images.githubusercontent.com/74157573/181388163-b1ad829e-c0c4-48a6-92d1-9361c3064a2a.png">
 
 4) In this image you can actually see the mirrors of the cars so that direction of travel can be understood.
 <img width="619" alt="image" src="https://user-images.githubusercontent.com/74157573/180663896-05ed875b-331c-4053-a6b7-1b0e34e7e408.png">
