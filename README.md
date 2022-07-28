@@ -38,7 +38,7 @@ Try to identify vehicle features that appear stable in most of the inspected exa
 <img width="347" alt="image" src="https://user-images.githubusercontent.com/74157573/181388163-b1ad829e-c0c4-48a6-92d1-9361c3064a2a.png">
 
 4) In this image you can actually see the mirrors of the cars so that direction of travel can be understood.
-<img width="619" alt="image" src="https://user-images.githubusercontent.com/74157573/180663896-05ed875b-331c-4053-a6b7-1b0e34e7e408.png">
+<img width="428" alt="image" src="https://user-images.githubusercontent.com/74157573/181392966-d7a15eaa-bac5-497a-90a0-ded25b529da7.png">
 
 5) In this image we can clearly see a car going the opposite direction.
 <img width="267" alt="image" src="https://user-images.githubusercontent.com/74157573/180663933-4e9489e7-12fc-440d-8656-6f6d9d081eb2.png">
