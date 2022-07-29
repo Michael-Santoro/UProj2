@@ -58,11 +58,6 @@ def show_pcl(pcl):
         vis.destroy_window()
 
     vis.register_key_callback(262,exit_key)
-    
-    right_arrow_key_code = 262
-    vis.register_key_callback(right_arrow_key_code, exit_key)
-    vis.run()
-
     #######
     ####### ID_S1_EX2 END #######     
        
@@ -140,7 +135,7 @@ def bev_from_pcl(lidar_pcl, configs):
 
     #######
     ####### ID_S2_EX1 END #######     
-    
+
     
     # Compute intensity layer of the BEV map
     ####### ID_S2_EX2 START #######     
@@ -174,9 +169,10 @@ def bev_from_pcl(lidar_pcl, configs):
     while True:
         k = cv2.waitKey(0) & 0xFF
         print(k)
-        if k == 27:
-            cv2.destroyAllWindows()
+        if k == 13:
             break
+    
+    cv2.destroyAllWindows()
 
 
     #######
@@ -198,9 +194,12 @@ def bev_from_pcl(lidar_pcl, configs):
     ## step 3 : temporarily visualize the intensity map using OpenCV to make sure that vehicles separate well from the background
     height_map = height_map * 256
     height_map = height_map.astype(np.uint8)
-    while (1):
-        cv2.imshow('height_map', height_map)
-        if cv2.waitKey() & 0xFF == 27:
+
+    cv2.imshow('height_map', height_map)
+    while True:
+        k = cv2.waitKey(0) & 0xFF
+        print(k)
+        if k == 13:
             break
     cv2.destroyAllWindows()
     #######
@@ -211,7 +210,7 @@ def bev_from_pcl(lidar_pcl, configs):
     density_map = np.zeros((configs.bev_height + 1, configs.bev_width + 1))
     _, _, counts = np.unique(lidar_pcl_cpy[:, 0:2], axis=0, return_index=True, return_counts=True)
     normalizedCounts = np.minimum(1.0, np.log(counts + 1) / np.log(64)) 
-    density_map[np.int_(lidar_pcl_top[:, 0]), np.int_(lidar_pcl_top[:, 1])] = normalizedCounts
+    density_map[np.int_(lidar_pcl_hei[:, 0]), np.int_(lidar_pcl_hei[:, 1])] = normalizedCounts
         
     # assemble 3-channel bev-map from individual maps
     bev_map = np.zeros((3, configs.bev_height, configs.bev_width))
