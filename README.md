@@ -41,22 +41,22 @@ Try to identify vehicle features that appear stable in most of the inspected exa
 <img width="428" alt="image" src="https://user-images.githubusercontent.com/74157573/181392966-d7a15eaa-bac5-497a-90a0-ded25b529da7.png">
 
 5) In this image we can clearly see a car going the opposite direction.
-<img width="267" alt="image" src="https://user-images.githubusercontent.com/74157573/180663933-4e9489e7-12fc-440d-8656-6f6d9d081eb2.png">
+<img width="341" alt="img_5" src="https://user-images.githubusercontent.com/74157573/181825339-4b3c322d-501a-4acf-9da3-7ba2217159f9.png">
 
-6) By rotating the image in the view we can clearly see a car and a truck in this image.
-<img width="314" alt="image" src="https://user-images.githubusercontent.com/74157573/180664039-100a177e-6067-4703-99bb-0ac615e00146.png">
+6) This is a work truck with a compressor trailer, we can see the pipe equipment above the truck.
+<img width="455" alt="img_6" src="https://user-images.githubusercontent.com/74157573/181825387-0508da33-b013-41d4-89c5-deb371b1f48e.png">
 
-7) Again we can see the back of some cars by rotating the point-cloud image.
-<img width="131" alt="image" src="https://user-images.githubusercontent.com/74157573/180664119-5408c16b-d7ec-4813-88f9-bdb19a1427b7.png">
+7) This car is a work truck which is apparent from the light-bar on the top of the truck the big tires and the big mirrors.
+<img width="395" alt="img_7" src="https://user-images.githubusercontent.com/74157573/181825427-d80c805b-f355-4c9c-8cd7-8636d9e463cb.png">
 
-8) We can clearly see the windsheild and the mirrors and the lights of this car.
-<img width="304" alt="image" src="https://user-images.githubusercontent.com/74157573/180664161-05aa4be9-e77c-4572-8f04-888b36874438.png">
+8) We can see the back of this car but the rear window.
+<img width="229" alt="img_8" src="https://user-images.githubusercontent.com/74157573/181825454-34b9be8e-b03c-440e-b38e-358eec1edfca.png">
 
-9) We can see the backs of these cars.
-<img width="321" alt="image" src="https://user-images.githubusercontent.com/74157573/180664221-1279bc49-a51e-4d02-9c8e-f4b9b6363ef4.png">
+9) We can see the front of this car by the windshield and the side mirrors.
+<img width="270" alt="img_9" src="https://user-images.githubusercontent.com/74157573/181825473-fb462242-1d57-49bc-bcbf-694108cc3032.png">
 
-10) Another example of the back of some cars.
-<img width="260" alt="image" src="https://user-images.githubusercontent.com/74157573/180664307-ec149287-ac49-45e7-80c5-ce3fee035498.png">
+10) The image below shows the back of a car and some people pretty far away.
+<img width="245" alt="img_10" src="https://user-images.githubusercontent.com/74157573/181825489-5f8a7171-f257-43a6-ad1d-e3dc45c69ba0.png">
 
 ## Convert sensor coordinates to BEV-map coordinates (ID_S2_EX1)
 The following image is obtained by modifying the following in the loop_over_dataset.py file:
