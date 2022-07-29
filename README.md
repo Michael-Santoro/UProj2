@@ -81,7 +81,9 @@ exec_tracking = []
 exec_visualization = []
 ```
 
-<img width="302" alt="image" src="https://user-images.githubusercontent.com/74157573/180664739-a6b29934-cd4b-40c9-9a23-2c7c990b17e6.png">
+<img width="226" alt="image" src="https://user-images.githubusercontent.com/74157573/181828987-043267bb-f30b-4f28-874c-808ed0604d88.png">
+
+<img width="455" alt="image" src="https://user-images.githubusercontent.com/74157573/181829046-6cf50d4c-5253-47f3-be89-44ed318c160e.png">
 
 ## Compute height layer of the BEV map (ID_S2_EX3)
 The output of the implementation of this step was no different from the previous 2.
@@ -108,6 +110,9 @@ exec_tracking = []
 exec_visualization = ['show_objects_in_bev_labels_in_camera']
 configs_det = det.load_configs(model_name="fpn_resnet")
 ```
+<img width="457" alt="image" src="https://user-images.githubusercontent.com/74157573/181835123-76178b71-93d5-4036-a07f-e6fcc00f6b87.png">
+
+
 ## Compute intersection-over-union between labels and detections (ID_S4_EX1)
 ```python
 data_filename = 'training_segment-1005081002024129653_5313_150_5333_150_with_camera_labels.tfrecord
