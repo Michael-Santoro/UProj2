@@ -49,14 +49,12 @@ def measure_detection_performance(detections, labels, labels_valid, min_iou=0.5)
             print("student task ID_S4_EX1 ")
 
             ## step 1 : extract the four corners of the current label bounding-box
-
-            label_obj = [label.type, label.box.center_x, label.box.center_y, label.box.center_z,
-                         label.box.height, label.box.width, label.box.length, label.box.heading]
-            label_bbox = tools.compute_box_corners(label_obj[1:])
+            label_bbox = tools.compute_box_corners(label.box.center_x,label.box.center_y,label.box.width, label.box.length, label.box.heading)
             ## step 2 : loop over all detected objects
             for detected_obj in detections:
                 ## step 3 : extract the four corners of the current detection
-                detected_bbox = tools.compute_box_corners(detected_obj[1:])
+                _, x, y, z, _, w, l, yaw = detected_obj
+                detected_bbox = tools.compute_box_corners(x, y, w, l, yaw)
                 ## step 4 : computer the center distance between label and detection bounding-box in x, y, and z
                 dist_x = np.linalg.norm(np.array((label.box.center_x))-np.array((detected_obj[1])))
                 dist_y = np.linalg.norm(np.array((label.box.center_y))-np.array((detected_obj[2])))
@@ -123,9 +121,7 @@ def compute_performance_stats(det_performance_all):
     print('student task ID_S4_EX3')
 
     ## step 1 : extract the total number of positives, true positives, false negatives and false positives
-    true_positives = sum(pos_negs_arr[:,1])
-    false_negatives = sum(pos_negs_arr[:,2])
-    false_positives = sum(pos_negs_arr[:,3])
+    all_positives, true_positives, false_negatives, false_positives = np.sum(pos_negs, axis=0)
 
     ## step 2 : compute precision
     precision = true_positives / (true_positives + false_positives)
