@@ -68,7 +68,7 @@ exec_detection = ['bev_from_pcl']
 exec_tracking = []
 exec_visualization = []
 ```
-<img width="355" alt="image" src="https://user-images.githubusercontent.com/74157573/180664498-650be03e-0256-4d14-a298-5311650c4d08.png">
+<img width="389" alt="image" src="https://user-images.githubusercontent.com/74157573/181827458-903d5f0c-742d-4d69-b026-ff5ab3eddcd5.png">
 
 ## Compute intensity layer of the BEV map (ID_S2_EX2)
 The following image is obtained by modifying the following in the loop_over_dataset.py file:
