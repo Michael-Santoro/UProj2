@@ -56,15 +56,17 @@ def measure_detection_performance(detections, labels, labels_valid, min_iou=0.5)
                 _, x, y, z, _, w, l, yaw = detected_obj
                 detected_bbox = tools.compute_box_corners(x, y, w, l, yaw)
                 ## step 4 : computer the center distance between label and detection bounding-box in x, y, and z
-                dist_x = np.linalg.norm(np.array((label.box.center_x))-np.array((detected_obj[1])))
-                dist_y = np.linalg.norm(np.array((label.box.center_y))-np.array((detected_obj[2])))
-                dist_z = np.linalg.norm(np.array((label.box.center_z))-np.array((detected_obj[3])))
+                dist_x = label.box.center_x - x
+                dist_y = label.box.center_y - y
+                dist_z = label.box.center_z - z
 
                 ## step 5 : compute the intersection over union (IOU) between label and detection bounding-box
-                overlap = label_bbox * detected_bbox # Logical AND
-                union = label_bbox + detected_bbox # Logical OR
+                label_bbox_ply = Polygon(label_bbox)
+                detected_bbox_ply = Polygon(detected_bbox)
+                intersection = label_bbox_ply.intersection(detected_bbox_ply).area
+                union = label_bbox_ply.union.union(detected_bbox_ply).area
 
-                IOU = overlap.sum()/float(union.sum()) 
+                IOU = intersection/union
 
                 ## step 6 : if IOU exceeds min_iou threshold, store [iou,dist_x, dist_y, dist_z] in matches_lab_det and increase the TP count
                 if IOU > min_iou:

@@ -16,6 +16,7 @@ import cv2
 import numpy as np
 import torch
 import open3d as o3d
+import os
 import zlib
 
 # add project directory to python path to enable relative imports
@@ -58,6 +59,7 @@ def show_pcl(pcl):
         vis.destroy_window()
 
     vis.register_key_callback(262,exit_key)
+    
     #######
     ####### ID_S1_EX2 END #######     
        
@@ -168,7 +170,6 @@ def bev_from_pcl(lidar_pcl, configs):
     cv2.imshow('img_intensity', img_intensity)
     while True:
         k = cv2.waitKey(0) & 0xFF
-        print(k)
         if k == 13:
             break
     
@@ -198,10 +199,9 @@ def bev_from_pcl(lidar_pcl, configs):
     cv2.imshow('height_map', height_map)
     while True:
         k = cv2.waitKey(0) & 0xFF
-        print(k)
         if k == 13:
             break
-    cv2.destroyAllWindows()
+    
     #######
     ####### ID_S2_EX3 END #######       
 
