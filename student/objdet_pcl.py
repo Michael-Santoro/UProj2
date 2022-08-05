@@ -41,6 +41,18 @@ def show_pcl(pcl):
     #######
     print("student task ID_S1_EX2")
 
+    def right_arrow_close_callback(vis):
+        """
+        When the right arrow key is hit, exit the Open3d visual
+        """
+        vis.destroy_window()
+
+    def spacebar_cycler_callback(vis):
+        """
+        When the spacebar is hit, load the next frame visual
+        """
+        vis.close()
+
     # step 1 : initialize open3d with key callback and create window
     vis = o3d.visualization.VisualizerWithKeyCallback()
     vis.create_window(window_name='show_pcl')
@@ -55,10 +67,9 @@ def show_pcl(pcl):
     vis.add_geometry(pcd)
 
     # step 5 : visualize point cloud and keep window open until right-arrow is pressed (key-code 262)
-    def exit_key(vis):
-        vis.destroy_window()
-
-    vis.register_key_callback(262,exit_key)
+    vis.register_key_callback(262, right_arrow_close_callback)
+    vis.register_key_callback(32, spacebar_cycler_callback)
+    vis.run()
     
     #######
     ####### ID_S1_EX2 END #######     
