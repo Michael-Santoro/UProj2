@@ -64,7 +64,7 @@ def measure_detection_performance(detections, labels, labels_valid, min_iou=0.5)
                 label_bbox_ply = Polygon(label_bbox)
                 detected_bbox_ply = Polygon(detected_bbox)
                 intersection = label_bbox_ply.intersection(detected_bbox_ply).area
-                union = label_bbox_ply.union.union(detected_bbox_ply).area
+                union = label_bbox_ply.union(detected_bbox_ply).area
 
                 IOU = intersection/union
 
