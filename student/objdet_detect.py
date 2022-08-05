@@ -232,28 +232,24 @@ def detect_objects(input_bev_maps, model, configs):
     # Extract 3d bounding boxes from model response
     print("student task ID_S3_EX2")
     objects = [] 
-
-
-    bbox_x = configs.lim_x[1] - configs.lim_x[0]
-    bbox_y = configs.lim_y[1] - configs.lim_y[0]    
+   
     ## step 1 : check whether there are any detections
-    if detections:
+    if detections[1] is not None:
         ## step 2 : loop over all detections
-        for obj in detections:
-            _, obj_x, obj_y, obj_z, obj_h, obj_w, obj_l, obj_yaw = obj
+        for a_detection in detections:
+            _, bev_x, bev_y, z, h, bev_w, bev_l, yaw = a_detection
             ## step 3 : perform the conversion using the limits for x, y and z set in the configs structure
-            x = obj_y / configs.bev_height * bbox_x + configs.lim_x[0]
-            y = obj_x / configs.bev_width * bbox_y + configs.lim_y[0]
-            z = obj_z - configs.lim_z[0]
-            w = obj_w / configs.bev_width * bbox_y
-            l = obj_l / configs.bev_height * bbox_x
+            x = bev_y / configs.bev_height * (configs.lim_x[1] - configs.lim_x[0])
+            y = bev_x / configs.bev_width * (configs.lim_y[1] - configs.lim_y[0]) - (configs.lim_y[1] - configs.lim_y[0])/2.0 
+            w = bev_w / configs.bev_width * (configs.lim_y[1] - configs.lim_y[0])
+            l = bev_l / configs.bev_height * (configs.lim_x[1] - configs.lim_x[0])
 
             ## step 3 : perform the conversion using the limits for x, y and z set in the configs structure
             if ((x >= configs.lim_x[0]) and (x <= configs.lim_x[1]) 
             and (y >= configs.lim_y[0]) and (y <= configs.lim_y[1]) 
             and (z >= configs.lim_z[0]) and (z <= configs.lim_z[1])):
             ## step 4 : append the current object to the 'objects' array
-                objects.append([1, x, y, z, obj_h, w, l, -obj_yaw])
+                objects.append([1, x, y, z, h, w, l, yaw])
     #######
     ####### ID_S3_EX2 START #######   
     
