@@ -1,15 +1,53 @@
-# Writeup: Track 3D-Objects Over Time
+# Final Writeup: Sensor Fusion and Object Tracking
+**Michael Santoro**
 
-Please use this starter template to answer the following questions:
+## Tracking
+The first step to this final project is to implement EKF (Extended Kalman Filter).
+There are two pieces of information that are essential to the functions that were coded in the filters.py file. The first being the 3D state transition equation, shown below:
+$$\begin{pmatrix} P_x \\ P_y \\ P_z \\ v_x \\ v_y \\ v_z \end{pmatrix}=
+\begin{pmatrix} 
+1 & 0 & 0 & \Delta t & 0 & 0 \\
+0 & 1 & 0 & 0 & \Delta t & 0 \\ 
+0 & 0 & 1 & 0 & 0 & \Delta t \\
+0 & 0 & 0 & 1 & 0 & 0 \\ 
+0 & 0 & 0 & 0 & 1 & 0 \\ 
+0 & 0 & 0 & 0 & 0 & 1 \end{pmatrix}*\begin{pmatrix} P_x \\ P_y \\ P_z \\ v_x \\ v_y \\ v_z \end{pmatrix} + \begin{pmatrix} v_{px} \\ v_{py} \\ v_{pz} \\ v_{vx} \\ v_{vy} \\ v_{vz} \end{pmatrix}$$
 
-### 1. Write a short recap of the four tracking steps and what you implemented there (filter, track management, association, camera fusion). Which results did you achieve? Which part of the project was most difficult for you to complete, and why?
 
+$$
+\textbf{F}(\Delta t) = \begin{pmatrix} 
+1 & 0 & 0 & \Delta t & 0 & 0 \\
+0 & 1 & 0 & 0 & \Delta t & 0 \\ 
+0 & 0 & 1 & 0 & 0 & \Delta t \\
+0 & 0 & 0 & 1 & 0 & 0 \\ 
+0 & 0 & 0 & 0 & 1 & 0 \\ 
+0 & 0 & 0 & 0 & 0 & 1 \end{pmatrix}
+$$
 
-### 2. Do you see any benefits in camera-lidar fusion compared to lidar-only tracking (in theory and in your concrete results)? 
-
-
-### 3. Which challenges will a sensor fusion system face in real-life scenarios? Did you see any of these challenges in the project?
-
-
-### 4. Can you think of ways to improve your tracking results in the future?
-
+Discrtizing this continous model leads to a formula for $\textbf{Q}$ depending on $\Delta t$ as follows:
+$$
+\textbf{Q}(\Delta t) = \int_{0}^{\Delta t}\textbf{F}(t)\textbf{Q}\textbf{F}(t)^T
+$$
+$$
+ \int_{0}^{\Delta t}\begin{pmatrix} 
+1 & 0 & 0 & t & 0 & 0 \\
+0 & 1 & 0 & 0 & t & 0 \\ 
+0 & 0 & 1 & 0 & 0 &  t \\
+0 & 0 & 0 & 1 & 0 & 0 \\ 
+0 & 0 & 0 & 0 & 1 & 0 \\ 
+0 & 0 & 0 & 0 & 0 & 1 \end{pmatrix}*
+\begin{pmatrix} 
+0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 \\ 
+0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & q & 0 & 0 \\ 
+0 & 0 & 0 & 0 & q & 0 \\ 
+0 & 0 & 0 & 0 & 0 & q \end{pmatrix}*
+\begin{pmatrix} 
+1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 0 \\ 
+0 & 0 & 1 & 0 & 0 & 0 \\
+t & 0 & 0 & 1 & 0 & 0 \\ 
+0 & t & 0 & 0 & 1 & 0 \\ 
+0 & 0 & t & 0 & 0 & 1 \end{pmatrix}dt
+$$
