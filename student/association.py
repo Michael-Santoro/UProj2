@@ -38,17 +38,22 @@ class Association:
         # - update list of unassigned measurements and unassigned tracks
         ############
         
-        # the following only works for at most one track and one measurement
-        self.association_matrix = np.matrix([]) # reset matrix
-        self.unassigned_tracks = [] # reset lists
-        self.unassigned_meas = []
-        
-        if len(meas_list) > 0:
-            self.unassigned_meas = [0]
-        if len(track_list) > 0:
-            self.unassigned_tracks = [0]
-        if len(meas_list) > 0 and len(track_list) > 0: 
-            self.association_matrix = np.matrix([[0]])
+        N = len(track_list) # N tracks
+        M = len(meas_list) # M measurements
+        self.unassigned_tracks = list(range(N))
+        self.unassigned_meas = list(range(M))
+
+        # initialize association matrix
+        self.association_matrix = np.inf*np.ones((N,M)) 
+
+        # loop over all tracks and all measurements to set up association matrix
+        for i in range(N): 
+            track = track_list[i]
+            for j in range(M):
+                meas = meas_list[j]
+                dist = self.MHD(track, meas, KF)
+                if self.gating(dist,meas.sensor):
+                    self.association_matrix[i,j] = dist
         
         ############
         # END student code
@@ -82,8 +87,11 @@ class Association:
         # TODO Step 3: return True if measurement lies inside gate, otherwise False
         ############
         
-        pass    
-        
+        limit = chi2.ppf(params.gating_threshold, df=2)
+        if MHD < limit:
+            return True
+        else:
+            return False   
         ############
         # END student code
         ############ 
@@ -92,9 +100,11 @@ class Association:
         ############
         # TODO Step 3: calculate and return Mahalanobis distance
         ############
-        
-        pass
-        
+        H = meas.sensor.get_H(track.x)
+        gamma = meas.z - H*track.x
+        S = H*track.P*H.transpose() + meas.R
+        MHD = gamma.transpose()*np.linalg.inv(S)*gamma # Mahalanobis distance formula
+        return MHD
         ############
         # END student code
         ############ 
