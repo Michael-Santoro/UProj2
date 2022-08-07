@@ -55,3 +55,5 @@ t & 0 & 0 & 1 & 0 & 0 \\
 0 & t & 0 & 0 & 1 & 0 \\ 
 0 & 0 & t & 0 & 0 & 1 \end{pmatrix}dt
 $$
+
+<img width="916" alt="image" src="https://user-images.githubusercontent.com/74157573/183304480-02253f9b-ff05-4524-8f91-8cdcd5bdcfb1.png">
