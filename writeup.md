@@ -5,7 +5,13 @@
 The first step to this final project is to implement EKF (Extended Kalman Filter).
 There are two pieces of information that are essential to the functions that were coded in the filters.py file. The first being the 3D state transition equation, shown below:
 
-$$\begin{pmatrix} P_x \\ P_y \\ P_z \\ v_x \\ v_y \\ v_z \end{pmatrix}=
+$$\begin{pmatrix} 
+P_x \\ 
+P_y \\ 
+P_z \\ 
+v_x \\ 
+v_y \\ 
+v_z \end{pmatrix}=
 \begin{pmatrix} 
 1 & 0 & 0 & \Delta t & 0 & 0 \\
 0 & 1 & 0 & 0 & \Delta t & 0 \\ 
