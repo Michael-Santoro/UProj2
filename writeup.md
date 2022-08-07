@@ -18,7 +18,21 @@ v_z \end{pmatrix}=
 0 & 0 & 1 & 0 & 0 & \Delta t \\
 0 & 0 & 0 & 1 & 0 & 0 \\ 
 0 & 0 & 0 & 0 & 1 & 0 \\ 
-0 & 0 & 0 & 0 & 0 & 1 \end{pmatrix}*\begin{pmatrix} P_x \\ P_y \\ P_z \\ v_x \\ v_y \\ v_z \end{pmatrix} + \begin{pmatrix} v_{px} \\ v_{py} \\ v_{pz} \\ v_{vx} \\ v_{vy} \\ v_{vz} \end{pmatrix}
+0 & 0 & 0 & 0 & 0 & 1 \end{pmatrix}*
+\begin{pmatrix} 
+P_x \\ 
+P_y \\ 
+P_z \\ 
+v_x \\ 
+v_y \\ 
+v_z \end{pmatrix} + 
+\begin{pmatrix} 
+v_{px} \\ 
+v_{py} \\ 
+v_{pz} \\ 
+v_{vx} \\ 
+v_{vy} \\ 
+v_{vz} \end{pmatrix}
 $$
 
 
