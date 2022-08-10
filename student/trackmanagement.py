@@ -36,10 +36,10 @@ class Track:
         ############
 
          # transform measurement to vehicle coordinates
-        pos_sens = np.ones((4, 1)) # homogeneous coordinates
-        pos_sens[0:3] = meas.z
+        z = np.ones((4,1))
+        z[0:3] = meas.z
         self.x = np.zeros((params.dim_state,1))
-        self.x = (meas.sensor.sens_to_veh*pos_sens)[0:3]
+        self.x[0:3] = (meas.sensor.sens_to_veh * z)[0:3]
         
         # set up position estimation error covariance
         self.P = np.zeros((params.dim_state, params.dim_state))
@@ -50,11 +50,6 @@ class Track:
         self.P[3,3] = params.sigma_p44**2 # initial setting for estimation error covariance P entry for vx
         self.P[4,4] = params.sigma_p55**2 # initial setting for estimation error covariance P entry for vy
         self.P[5,5] = params.sigma_p66**2 # initial setting for estimation error covariance P entry for vz
-        
-        # overall covariance initialization
-        self.P = np.zeros((6, 6))
-        self.P[0:3, 0:3] = P_pos
-        self.P[3:6, 3:6] = P_vel
 
         self.state = 'initialized'
         self.score = 1./params.window
@@ -152,12 +147,10 @@ class Trackmanagement:
         # - increase track score
         # - set track state to 'tentative' or 'confirmed'
         ############
-
-        if track.score < 1:
-            track.score += 1. / params.window
-        if ((track.score > (1. / params.window)) and (track.score < params.confirmed_threshold)):
+        track.score += 1. / params.window
+        if track.score < params.confirmed_threshold:
             track.state = 'tentative'
-        if track.score >= params.confirmed_threshold:
+        else:
             track.state = 'confirmed'
         
         ############
