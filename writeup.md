@@ -46,6 +46,7 @@ $$
 0 & 0 & 0 & 0 & 0 & 1 \end{pmatrix}
 $$
 
+The second being the covariance matrix below.
 Discrtizing this continous model leads to a formula for $\textbf{Q}$ depending on $\Delta t$ as follows:
 
 $$
@@ -96,19 +97,24 @@ $$
 0 & 0 & \frac{(\Delta t)^2 q}{2} & 0 & 0 & \Delta tq \end{pmatrix}
 $$
 
-<img width="916" alt="image" src="https://user-images.githubusercontent.com/74157573/183304480-02253f9b-ff05-4524-8f91-8cdcd5bdcfb1.png">
+After these matricies had been defined, the linear algebra equations for the predict and update functions were used to complete the position (x) and prediction (P) from the track.
+
+<img width="458" alt="image" src="https://user-images.githubusercontent.com/74157573/183799002-26746339-7bcf-48eb-bcf4-a1892e3b3dec.png">
+
 
 ## Track Management
 
-<img width="907" alt="image" src="https://user-images.githubusercontent.com/74157573/183313057-841cb671-3218-40e9-9d8f-a89ccd9fc12d.png">
+This step was primarily to complete the track management class and the track class. There is code related to updating track scores and deleting unassociated tracks based on conditions.
+
+<img width="602" alt="image" src="https://user-images.githubusercontent.com/74157573/183799203-50cd4855-abb9-463e-b02b-49581ede8f7b.png">
 
 ## Data Association
+This step is the big connecting part of the project where tracks are managed in the association matrix. This was a challenge for me since I forgot to update the get_closest association function.
+
+<img width="907" alt="image" src="https://user-images.githubusercontent.com/74157573/183313057-841cb671-3218-40e9-9d8f-a89ccd9fc12d.png">
 
 ## Sensor Fusion
+Up to this point we had just been working with Lidar data since in someways the location has an accuarate depiction in space (ex. x,y,z) in this step we included the camera data. This required a bit more complex math from the camera data. Finally, putting including a combination of both sensors greatly reduced the error rate, as seen in the graph below.
 
+<img width="589" alt="image" src="https://user-images.githubusercontent.com/74157573/183795797-13ce2ae8-5b71-4584-892b-3a724a999a83.png">
 
-## Wrap-Up
-Write a short recap of the four tracking steps and what you implemented there (EKF, track management, data association, camera-lidar sensor fusion). Which results did you achieve? Which part of the project was most difficult for you to complete, and why?
-Do you see any benefits in camera-lidar fusion compared to lidar-only tracking (in theory and in your concrete results)?
-Which challenges will a sensor fusion system face in real-life scenarios? Did you see any of these challenges in the project?
-Can you think of ways to improve your tracking results in the future?
