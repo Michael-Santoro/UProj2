@@ -99,6 +99,10 @@ $$
 
 After these matricies had been defined, the linear algebra equations for the predict and update functions were used to complete the position (x) and prediction (P) from the track.
 
+<img width="928" alt="image" src="https://user-images.githubusercontent.com/74157573/184032845-d3705cfe-0c21-4347-91b2-49a25f741462.png">
+
+<img width="902" alt="image" src="https://user-images.githubusercontent.com/74157573/184033038-6fd7d144-6ec3-48cc-84d2-525e9ab43b7a.png">
+
 ## Track Management
 
 This step was primarily to complete the track management class and the track class. There is code related to updating track scores and deleting unassociated tracks based on conditions.
