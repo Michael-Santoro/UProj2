@@ -99,9 +99,14 @@ $$
 
 After these matricies had been defined, the linear algebra equations for the predict and update functions were used to complete the position (x) and prediction (P) from the track.
 
+<img width="458" alt="image" src="https://user-images.githubusercontent.com/74157573/183799002-26746339-7bcf-48eb-bcf4-a1892e3b3dec.png">
+
+
 ## Track Management
 
 This step was primarily to complete the track management class and the track class. There is code related to updating track scores and deleting unassociated tracks based on conditions.
+
+<img width="602" alt="image" src="https://user-images.githubusercontent.com/74157573/183799203-50cd4855-abb9-463e-b02b-49581ede8f7b.png">
 
 ## Data Association
 This step is the big connecting part of the project where tracks are managed in the association matrix. This was a challenge for me since I forgot to update the get_closest association function.
