@@ -30,7 +30,7 @@ class Filter:
         ############
         # TODO Step 1: implement and return system matrix F
         ############
-        dt = self.dt
+        dt = params.dt
         return np.matrix([[1, 0, 0, dt, 0, 0],
                           [0, 1, 0, 0, dt, 0],
                           [0, 0, 1, 0, 0, dt],
@@ -48,8 +48,8 @@ class Filter:
         ############
 
         # process noise covariance Q
-        q = self.q
-        dt = self.dt
+        q = params.q
+        dt = params.dt
         q1 = ((dt**3)/3) * q 
         q2 = ((dt**2)/2) * q 
         q3 = dt * q 
@@ -102,7 +102,7 @@ class Filter:
 
         K = P*H.transpose()*np.linalg.inv(S) # Kalman gain
         x = x + K*gamma # state update
-        I = np.identity(self.dim_state)
+        I = np.identity(params.dim_state)
         P = (I - K*H) * P # covariance update
 
         track.set_x(x)
