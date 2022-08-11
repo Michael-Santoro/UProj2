@@ -35,20 +35,24 @@ class Track:
         # - initialize track state and track score with appropriate values
         ############
 
-        self.x = np.matrix([[49.53980697],
-                        [ 3.41006279],
-                        [ 0.91790581],
-                        [ 0.        ],
-                        [ 0.        ],
-                        [ 0.        ]])
-        self.P = np.matrix([[9.0e-02, 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00],
-                        [0.0e+00, 9.0e-02, 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00],
-                        [0.0e+00, 0.0e+00, 6.4e-03, 0.0e+00, 0.0e+00, 0.0e+00],
-                        [0.0e+00, 0.0e+00, 0.0e+00, 2.5e+03, 0.0e+00, 0.0e+00],
-                        [0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 2.5e+03, 0.0e+00],
-                        [0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 2.5e+01]])
-        self.state = 'confirmed'
-        self.score = 0
+         # transform measurement to vehicle coordinates
+        z = np.ones((4,1))
+        z[0:3] = meas.z
+        self.x = np.zeros((params.dim_state,1))
+        self.x[0:3] = (meas.sensor.sens_to_veh * z)[0:3]
+        
+        # set up position estimation error covariance
+        self.P = np.zeros((params.dim_state, params.dim_state))
+        self.P[0:3,0:3] = M_rot * meas.R * M_rot.T
+
+        # set up velocity estimation error covariance
+# set up velocity estimation error covariance
+        self.P[3,3] = params.sigma_p44**2 # initial setting for estimation error covariance P entry for vx
+        self.P[4,4] = params.sigma_p55**2 # initial setting for estimation error covariance P entry for vy
+        self.P[5,5] = params.sigma_p66**2 # initial setting for estimation error covariance P entry for vz
+
+        self.state = 'initialized'
+        self.score = 1./params.window
         
         ############
         # END student code
@@ -107,10 +111,14 @@ class Trackmanagement:
             if meas_list: # if not empty
                 if meas_list[0].sensor.in_fov(track.x):
                     # your code goes here
-                    pass 
+                    track.score -= 1./params.window 
 
         # delete old tracks   
-
+        for track in self.track_list:
+            if (((track.state == 'confirmed') and (track.score <= params.delete_threshold)) or
+               ((track.state == 'initialized' or track.state == 'tentative') and 
+                (track.P[0, 0] > params.max_P or track.P[1, 1] > params.max_P))):
+                self.delete_track(track)
         ############
         # END student code
         ############ 
@@ -139,8 +147,11 @@ class Trackmanagement:
         # - increase track score
         # - set track state to 'tentative' or 'confirmed'
         ############
-
-        pass
+        track.score += 1. / params.window
+        if track.score < params.confirmed_threshold:
+            track.state = 'tentative'
+        else:
+            track.state = 'confirmed'
         
         ############
         # END student code
