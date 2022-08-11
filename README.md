@@ -107,13 +107,18 @@ After these matricies had been defined, the linear algebra equations for the pre
 
 This step was primarily to complete the track management class and the track class. There is code related to updating track scores and deleting unassociated tracks based on conditions.
 
+<img width="901" alt="image" src="https://user-images.githubusercontent.com/74157573/184042500-9bd4b76e-0421-438c-b590-6f3a8efdf797.png">
+
 ## Data Association
 This step is the big connecting part of the project where tracks are managed in the association matrix. This was a challenge for me since I forgot to update the get_closest association function.
 
-<img width="907" alt="image" src="https://user-images.githubusercontent.com/74157573/183313057-841cb671-3218-40e9-9d8f-a89ccd9fc12d.png">
+<img width="906" alt="image" src="https://user-images.githubusercontent.com/74157573/184042975-a40176fc-b75a-49b7-9798-1d261db7a514.png">
+
+
+<img width="907" alt="image" src="https://user-images.githubusercontent.com/74157573/184043188-1cd6eaa2-58ab-4864-bc6f-3ae3e92581c8.png">
 
 ## Sensor Fusion
 Up to this point we had just been working with Lidar data since in someways the location has an accuarate depiction in space (ex. x,y,z) in this step we included the camera data. This required a bit more complex math from the camera data. Finally, putting including a combination of both sensors greatly reduced the error rate, as seen in the graph below.
 
-<img width="589" alt="image" src="https://user-images.githubusercontent.com/74157573/183795797-13ce2ae8-5b71-4584-892b-3a724a999a83.png">
+<img width="872" alt="image" src="https://user-images.githubusercontent.com/74157573/184043951-e1175c11-4938-4687-af8b-f930a4c89757.png">
 
