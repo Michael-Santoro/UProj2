@@ -120,5 +120,5 @@ This step is the big connecting part of the project where tracks are managed in 
 ## Sensor Fusion
 Up to this point we had just been working with Lidar data since in someways the location has an accuarate depiction in space (ex. x,y,z) in this step we included the camera data. This required a bit more complex math from the camera data. Finally, putting including a combination of both sensors greatly reduced the error rate, as seen in the graph below.
 
-<img width="589" alt="image" src="https://user-images.githubusercontent.com/74157573/183795797-13ce2ae8-5b71-4584-892b-3a724a999a83.png">
+<img width="872" alt="image" src="https://user-images.githubusercontent.com/74157573/184043951-e1175c11-4938-4687-af8b-f930a4c89757.png">
 
