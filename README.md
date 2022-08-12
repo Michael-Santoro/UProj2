@@ -120,7 +120,7 @@ This step is the big connecting part of the project where tracks are managed in 
 ## Sensor Fusion
 Up to this point we had just been working with Lidar data since in someways the location has an accuarate depiction in space (ex. x,y,z) in this step we included the camera data. This required a bit more complex math from the camera data. Finally, putting including a combination of both sensors greatly reduced the error rate, as seen in the graph below.
 
-<img width="872" alt="image" src="https://user-images.githubusercontent.com/74157573/184043951-e1175c11-4938-4687-af8b-f930a4c89757.png">
+<img width="1618" alt="image" src="https://user-images.githubusercontent.com/74157573/184266477-45d213c6-70fe-4b52-8757-9cf41fe45013.png">
 
 ## Review Questions
 1. Write a short recap of the four tracking steps and what you implemented there (EKF, track management, data association, camera-lidar sensor fusion). Which results did you achieve? Which part of the project was most difficult for you to complete, and why?</br>
