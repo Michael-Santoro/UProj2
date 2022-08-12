@@ -101,8 +101,13 @@ class Association:
         ############
         # TODO Step 3: return True if measurement lies inside gate, otherwise False
         ############
-        
-        limit = chi2.ppf(params.gating_threshold, df=2)
+        if sensor.name == "lidar":
+            dof = 2
+        else:
+            dof = 1
+
+        limit = chi2.ppf(params.gating_threshold, df=dof)
+
         if MHD < limit:
             return True
         else:
@@ -116,8 +121,8 @@ class Association:
         # TODO Step 3: calculate and return Mahalanobis distance
         ############
         H = meas.sensor.get_H(track.x)
-        gamma = meas.z - H*track.x
-        S = H*track.P*H.transpose() + meas.R
+        gamma = KF.gamma(track, meas)
+        S = KF.S(track, meas, H)
         MHD = gamma.transpose()*np.linalg.inv(S)*gamma # Mahalanobis distance formula
         return MHD
         ############
