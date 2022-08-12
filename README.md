@@ -123,14 +123,14 @@ Up to this point we had just been working with Lidar data since in someways the 
 <img width="872" alt="image" src="https://user-images.githubusercontent.com/74157573/184043951-e1175c11-4938-4687-af8b-f930a4c89757.png">
 
 ## Review Questions
-1. Write a short recap of the four tracking steps and what you implemented there (EKF, track management, data association, camera-lidar sensor fusion). Which results did you achieve? Which part of the project was most difficult for you to complete, and why?
-See the above sections for a short recap. I would say the association was the most difficult as the matrix needs to managed appropiately.
+1. Write a short recap of the four tracking steps and what you implemented there (EKF, track management, data association, camera-lidar sensor fusion). Which results did you achieve? Which part of the project was most difficult for you to complete, and why?</br>
+</tab>***See the above sections for a short recap. I would say the association was the most difficult as the matrix needs to managed appropiately.***
 
-1. Do you see any benefits in camera-lidar fusion compared to lidar-only tracking (in theory and in your concrete results)?
-Yes, in theory data from two sensors should allow us to complete updates more frequently, since we will always have a sensor to update our predictions. This was seen in the low RMSE scores.
+1. Do you see any benefits in camera-lidar fusion compared to lidar-only tracking (in theory and in your concrete results)?</br>
+</tab>***Yes, in theory data from two sensors should allow us to complete updates more frequently, since we will always have a sensor to update our predictions. This was seen in the low RMSE scores.***
 
-1. Which challenges will a sensor fusion system face in real-life scenarios? Did you see any of these challenges in the project?
-If a car were to pull out infront of the self driving car, I would be concerened about the time that it takes to do all the proceccing to find the object and press the brakes. Yes, in the project frames were displayed in slower than real time. There coulc be some delay do to the computer displaying images, but there would be a concern that we are adding to much latency.
+1. Which challenges will a sensor fusion system face in real-life scenarios? Did you see any of these challenges in the project?</br>
+</tab>***If a car were to pull out infront of the self driving car, I would be concerened about the time that it takes to do all the proceccing to find the object and press the brakes. Yes, in the project frames were displayed in slower than real time. There coulc be some delay do to the computer displaying images, but there would be a concern that we are adding to much latency.***
 
-1. Can you think of ways to improve your tracking results in the future?
-Yes if there was other camera and lidar sensors offset of the vieichles sensor, this would give us different perspective and could improve results.
+1. Can you think of ways to improve your tracking results in the future?</br>
+</tab>***Yes if there was other camera and lidar sensors offset of the vieichles sensor, this would give us different perspective and could improve results.***
