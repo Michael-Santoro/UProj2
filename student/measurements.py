@@ -87,15 +87,14 @@ class Sensor:
             pos_sens = self.veh_to_sens * pos_veh
 
             # - project from camera to image coordinates
-            if pos_sens[0] > 0.00001:
-                cam_cood = np.zeros((2, 1))
-                cam_cood[0] = self.c_i - (self.f_i * pos_sens[1] / pos_sens[0])
-                cam_cood[1] = self.c_j - (self.f_j * pos_sens[2] / pos_sens[0])
-                return cam_cood
+            if pos_sens[0] == 0:
+                raise ValueError("Division by zero")
+            cam_cood = np.zeros((2, 1))
+            cam_cood[0] = self.c_i - (self.f_i * pos_sens[1] / pos_sens[0])
+            cam_cood[1] = self.c_j - (self.f_j * pos_sens[2] / pos_sens[0])
+            return cam_cood
 
             # - make sure to not divide by zero, raise an error if needed
-            else:
-                raise ValueError("Division by zero")
         
             ############
             # END student code
